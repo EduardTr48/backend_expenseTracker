@@ -25,7 +25,7 @@ public class ExpenseController {
     @GetMapping
     public ResponseEntity<List<ExpenseDTO>> getAllExpenses(){
         List<Expense> expenses = expenseService.getAllExpenses();
-        List<ExpenseDTO> expenseDTOS = ExpenseMapper.toDoList(expenses);
+        List<ExpenseDTO> expenseDTOS = ExpenseMapper.toDTOList(expenses);
         return ResponseEntity.ok(expenseDTOS);
     }
     @GetMapping("/{id}")

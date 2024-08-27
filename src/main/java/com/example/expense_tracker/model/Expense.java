@@ -1,5 +1,6 @@
 package com.example.expense_tracker.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -14,6 +15,7 @@ public class Expense {
 
     private String name;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "category", nullable = false)
     private Category category;

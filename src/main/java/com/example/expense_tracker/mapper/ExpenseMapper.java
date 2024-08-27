@@ -28,7 +28,7 @@ public class ExpenseMapper {
         return expense;
     }
 
-    public static List<ExpenseDTO> toDoList(List<Expense> expenses){
+    public static List<ExpenseDTO> toDTOList(List<Expense> expenses){
         List<ExpenseDTO> expenseDTOs = new ArrayList<>();
         for(Expense expense: expenses){
             ExpenseDTO dto = toDTO(expense);
