@@ -3,14 +3,11 @@ package com.example.expense_tracker.controller;
 import com.example.expense_tracker.dto.CategoryDTO;
 import com.example.expense_tracker.mapper.CategoryMapper;
 import com.example.expense_tracker.model.Category;
+import com.example.expense_tracker.model.CategoryType;
 import com.example.expense_tracker.service.CategoryService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,17 @@ public class CategoryController {
         List<CategoryDTO> categoryDTOS = CategoryMapper.toDTOList(categories);
         return ResponseEntity.ok(categoryDTOS);
     }
+
+    @GetMapping("/{type}")
+    public ResponseEntity<List<CategoryDTO>> getAllCategoryByType(@PathVariable CategoryType type){
+        List<Category> categories = categoryService.getCategoriesByType(type);
+        if(categories.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        List<CategoryDTO> categoryDTOs = CategoryMapper.toDTOList(categories);
+        return ResponseEntity.ok(categoryDTOs);
+
+    }
+
 
 }

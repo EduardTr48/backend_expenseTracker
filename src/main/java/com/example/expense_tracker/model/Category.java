@@ -18,8 +18,12 @@ public class Category {
     private CategoryType type;
 
     @JsonManagedReference
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private Set<Expense> expenses;
+
+    @JsonManagedReference
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private Set<Income> categories;
     public Long getId() {
         return id;
     }
@@ -50,5 +54,13 @@ public class Category {
 
     public void setExpenses(Set<Expense> expenses) {
         this.expenses = expenses;
+    }
+
+    public Set<Income> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Income> categories) {
+        this.categories = categories;
     }
 }

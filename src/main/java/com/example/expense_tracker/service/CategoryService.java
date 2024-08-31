@@ -1,6 +1,7 @@
 package com.example.expense_tracker.service;
 
 import com.example.expense_tracker.model.Category;
+import com.example.expense_tracker.model.CategoryType;
 import com.example.expense_tracker.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class CategoryService {
 
     public Optional<Category> getCategoryById(Long id){
         return categoryRepository.findById(id);
+    }
+
+    public List<Category> getCategoriesByType(CategoryType type){
+        return categoryRepository.findAllByType(type);
+
     }
 
 }

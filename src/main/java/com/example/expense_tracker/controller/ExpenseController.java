@@ -80,7 +80,7 @@ public class ExpenseController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Expense> deleteExpense(@PathVariable Long id){
+    public ResponseEntity deleteExpense(@PathVariable Long id){
         if(expenseService.getExpenseById(id).isPresent()){
             expenseService.deleteExpense(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

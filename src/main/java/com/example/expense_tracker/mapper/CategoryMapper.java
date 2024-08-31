@@ -12,7 +12,7 @@ public class CategoryMapper {
         categoryDTO.setId(category.getId());
         categoryDTO.setName(category.getName());
         categoryDTO.setType(category.getType());
-
+        categoryDTO.formatName();
         return categoryDTO;
     }
 
