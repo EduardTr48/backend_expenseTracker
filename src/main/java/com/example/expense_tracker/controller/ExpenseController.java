@@ -56,7 +56,7 @@ public class ExpenseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Expense> updateExpense(@PathVariable Long id, @RequestBody ExpenseDTO expenseDTO){
+    public ResponseEntity<ExpenseDTO> updateExpense(@PathVariable Long id, @RequestBody ExpenseDTO expenseDTO){
         Optional<Expense> optionalExpense = expenseService.getExpenseById(id);
         if(optionalExpense.isPresent()){
             Expense expense = optionalExpense.get();
@@ -71,7 +71,9 @@ public class ExpenseController {
             }
 
             expenseService.updateExpense(id, expense);
-            return ResponseEntity.ok(expense);
+            ExpenseDTO responseDTO = ExpenseMapper.toDTO(expense);
+
+            return ResponseEntity.ok(responseDTO);
         }else{
             return ResponseEntity.notFound().build();
 

@@ -69,8 +69,8 @@ public class IncomeController {
             if(optionalCategory.isPresent()){
                 income.setCategory(optionalCategory.get());
             }
-            Income response = incomeService.updateIncome(id,income);
-            IncomeDTO responseDTO = IncomeMapper.toDTO(response);
+            incomeService.updateIncome(id,income);
+            IncomeDTO responseDTO = IncomeMapper.toDTO(income);
             return ResponseEntity.ok(responseDTO);
 
         }else {
